@@ -10,11 +10,14 @@ export function AppLayout() {
   const { t } = useTranslation()
   const locale = useLocale()
 
-  // The language itself is set in the route loader, before render. What is
-  // left here is the document attribute, which only a screen reader reads.
+  // The language itself is set in the route loader, before render. What is left
+  // here is the document metadata, which browsers and screen readers read but
+  // the React tree does not: the lang attribute and the tab title, both of
+  // which should follow the language the shopper is reading.
   useEffect(() => {
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
-  }, [locale])
+    document.title = t('app.title')
+  }, [locale, t])
 
   return (
     <div className="flex min-h-dvh flex-col">

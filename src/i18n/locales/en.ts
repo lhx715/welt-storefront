@@ -6,6 +6,7 @@
 const en = {
   app: {
     name: 'WELT',
+    title: 'WELT | Footwear and Apparel',
     tagline: 'Footwear and apparel, cut and sewn in small runs.',
     season: 'Autumn / Winter 26',
   },

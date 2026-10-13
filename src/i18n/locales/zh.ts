@@ -11,6 +11,7 @@ import type en from './en'
 const zh: typeof en = {
   app: {
     name: 'WELT',
+    title: 'WELT | 鞋履与服装',
     tagline: '鞋履与服装，小批量裁剪缝制。',
     season: '26 秋冬',
   },
