@@ -6,6 +6,8 @@
 
 ![商品列表](docs/plp.png)
 
+录屏演示：[桌面端](docs/demo/desktop-walkthrough.mp4) · [移动端](docs/demo/mobile-walkthrough.mp4)
+
 ## 能做什么
 
 - **商品列表** —— 分类、搜索、排序、色系筛选，全部筛选状态存在 URL 里，可分享、可后退、刷新不丢
