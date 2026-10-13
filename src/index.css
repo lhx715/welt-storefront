@@ -1,21 +1,167 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@import '@fontsource-variable/archivo/standard.css';
+@import 'tailwindcss';
+
+/*
+  WELT — design tokens
+  Ground: undyed cotton. Ink: indigo (a chosen colour, not a stand-in black).
+  Signal: madder red, reserved for state only (sale, error, in-bag).
+*/
+@theme {
+  --color-cloth: #f2f0eb;
+  --color-cloth-deep: #e8e4da;
+  --color-surface: #fbfaf7;
+
+  --color-ink: #1e2a4a;
+  --color-ink-deep: #131a2e;
+  --color-ink-soft: #5b6480;
+  --color-rule: #d5d1c6;
+
+  --color-dye: #a8322a;
+  --color-lichen: #5f6b4f;
+
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(2.25rem, 6.2vw, 5rem);
+  --text-display--line-height: 0.9;
+  --text-display--letter-spacing: -0.035em;
+
+  --text-title: clamp(1.5rem, 3.2vw, 2.5rem);
+  --text-title--line-height: 1.02;
+  --text-title--letter-spacing: -0.025em;
+
+  --radius-chip: 2px;
+
+  /* Motion answers a person's action — panels opening and closing. There is no
+     ambient animation anywhere in this interface. */
+  --animate-fade-in: fade-in 200ms ease-out;
+  --animate-fade-out: fade-out 150ms ease-in;
+  --animate-sheet-in-right: sheet-in-right 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-sheet-out-right: sheet-out-right 180ms ease-in;
+  --animate-sheet-in-bottom: sheet-in-bottom 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-sheet-out-bottom: sheet-out-bottom 180ms ease-in;
 }
 
-:root {
-  color-scheme: light dark;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  line-height: 1.5;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sheet-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sheet-out-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes sheet-in-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sheet-out-bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* Brand voice rides the width axis of one family, not a second typeface. */
+@utility wordmark {
+  font-stretch: 125%;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+@utility display-face {
+  font-stretch: 115%;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility label-face {
+  font-stretch: 105%;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--color-cloth);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-cloth);
+  }
+
+  input,
+  button,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* Hairline that encodes separation; never used as decoration. */
+  .rule-t {
+    border-top: 1px solid var(--color-rule);
+  }
+  .rule-b {
+    border-bottom: 1px solid var(--color-rule);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
